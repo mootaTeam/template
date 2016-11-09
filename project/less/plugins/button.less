@@ -1,0 +1,88 @@
+
+
+
+@charset "utf-8";
+@import (reference) "../core/_variable";
+
+/*button*/
+
+.btn{
+    margin-bottom: 0; /*for input.ui-btn*/
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: inherit; /* Correct font family not being inherited in all browsers for <button> <input> */
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+
+
+    &:hover{
+        text-decoration:none;
+    }
+}
+
+.button-variant(@color; @bg; @bg-hover; @border)   {
+    color: @color;
+    background: @bg;
+
+    & when (iscolor(@border) = false) {
+        border-color: @bg;
+    }
+    & when (iscolor(@border)) {
+        border-color: @border;
+    }
+
+    &.ui-btn-active{
+        background: @bg-hover;
+        border-color: @bg-hover;
+    }
+
+}
+.button-variant-size(@width; @height; @font-size)   {
+    width: @width;
+    height: @height;
+    font-size: @font-size;
+    line-height: @height;
+    
+
+
+    button&, input&{
+        width: @width;
+        height: @height;
+        line-height: normal;
+    }
+    
+}
+
+// 橙色按钮
+.btn-default{
+    .button-variant(@btn-default-color; @btn-default-bg; @btn-default-bg-hover; false)
+}
+// 白底黑字按钮 一般应用于返回、取消、全部
+.btn-info{
+    cursor: default;
+    .button-variant(@btn-info-color; @btn-info-bg; @btn-info-bg-hover; @btn-info-border)
+}
+// 不可点击按钮
+.btn-disable{
+    cursor: default;
+    .button-variant(@btn-disable-color; @btn-disable-bg; @btn-disable-bg-hover; false)
+}
+// 白底橙字按钮 一般应用于取出
+.btn-white-orange{
+    .button-variant(@btn-info2-color; @btn-info2-bg; @btn-info2-bg-hover; @btn-info2-border)
+}
+.btn-block{
+    .button-variant-size(100%; 44px; 16px);
+}
+.btn-l{
+    border-radius: 3px;
+    .button-variant-size(200px; 44px; 16px);
+}
+.btn-s{
+    border-radius: 3px;
+    .button-variant-size(50px; 25px; 12px);
+}

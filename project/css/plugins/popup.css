@@ -1,0 +1,198 @@
+@charset "utf-8";
+/*=====buttons======*/
+/*=====iconfont url======*/
+/*window*/
+/* 默认的弹出框样式 */
+.UC-popupWrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 998;
+  display: none;
+}
+.UC-popupWrap.show {
+  display: block;
+}
+.UC-popupWrap > .popupBackdrop {
+  background: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.UC-popupWrap > .popupBackdrop.show {
+  background: rgba(0, 0, 0, 0.4);
+}
+.UC-popupWrap > .popupInner {
+  width: 270px;
+  margin: 0 auto;
+  background: #f0eff5;
+  position: relative;
+  top: 40%;
+  -webkit-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.UC-popupWrap > .popupInner > .popupHeader {
+  position: relative;
+  padding: 0 15px;
+}
+.UC-popupWrap > .popupInner > .popupHeader h4 {
+  text-align: center;
+  font-size: 15px;
+  line-height: 20px;
+  padding-top: 20px;
+  color: #000000;
+}
+.UC-popupWrap > .popupInner > .popupHeader + .popupContent {
+  padding-top: 12px;
+}
+.UC-popupWrap > .popupInner > .popupContent {
+  padding: 20px 15px 20px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.4285;
+}
+.UC-popupWrap > .popupInner > .popupContent .popupInput {
+  background: #fff;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  padding: 3px 0;
+  margin-top: 10px;
+}
+.UC-popupWrap > .popupInner > .popupContent .popupInput label {
+  height: 100px;
+  background: blue;
+  display: block;
+}
+.UC-popupWrap > .popupInner > .popupContent .popupInput input {
+  width: 100%;
+  border: none;
+  text-indent: 10px;
+  font-size: 15px;
+  color: #999;
+  line-height: 24px;
+}
+.UC-popupWrap > .popupInner > .popupContent p {
+  line-height: 1.5;
+  font-size: 14px;
+  color: #000;
+}
+.UC-popupWrap > .popupInner > .popupContent p.productName,
+.UC-popupWrap > .popupInner > .popupContent p.accountValue {
+  color: #999;
+  font-size: 14px;
+}
+.UC-popupWrap > .popupInner > .popupContent p span.digit {
+  color: #f30;
+  font-size: 16px;
+  font-family: arial;
+}
+.UC-popupWrap > .popupInner > .popupButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-top: 1px solid #dfdfdf;
+}
+.UC-popupWrap > .popupInner > .popupButton > a {
+  font-size: 18px;
+}
+.UC-popupWrap > .popupInner > .popupButton > a.actived {
+  background: #ddd;
+}
+.UC-popupWrap > .popupInner > .popupButton > a {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  line-height: 44px;
+  text-align: center;
+  display: block;
+}
+.UC-popupWrap > .popupInner > .popupButton > a + a {
+  border-left: 1px solid #dfdfdf;
+}
+.UC-popupWrap > .popupInner > .popupButton > a[data-btn="no"] {
+  color: #333333;
+}
+.UC-popupWrap > .popupInner > .popupButton > a[data-btn="yes"] {
+  color: #ff4400;
+}
+.UC-popupWrap > .popupInner > .popupButton > a[data-btn="yes"].nonactivated {
+  color: #999999;
+}
+.UC-popupWrap > .bottomPopupInner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 14px;
+  -webkit-transform: translate(0, 100%);
+      -ms-transform: translate(0, 100%);
+          transform: translate(0, 100%);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.UC-popupWrap > .bottomPopupInner.show {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.UC-popupWrap > .bottomPopupInner > .PopupHeader,
+.UC-popupWrap > .bottomPopupInner > .PopupContent,
+.UC-popupWrap > .bottomPopupInner > .popupButton {
+  background: #f0eff5;
+}
+.UC-popupWrap > .bottomPopupInner > .PopupHeader {
+  padding: 20px 15px;
+  text-align: center;
+  color: #666666;
+  border-bottom: 1px solid #dfdfdf;
+}
+.UC-popupWrap > .bottomPopupInner > .PopupContent {
+  max-height: 50vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.UC-popupWrap > .bottomPopupInner > .popupButton {
+  height: 44px;
+  margin-top: 5px;
+}
+.UC-popupWrap > .bottomPopupInner > .popupButton a {
+  font-size: 16px;
+  display: block;
+  line-height: 44px;
+  text-align: center;
+  color: #666666;
+}
+.UC-tips {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 5px 15px;
+  border-radius: 3px;
+  min-width: 50px;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+}
+.UC-tips.show {
+  opacity: 1;
+}
+.UC-tips p {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+}
