@@ -33,7 +33,7 @@ define(function(require, exports, module){
 
 			    html = "",
 
-			    target = $("#UC_popup"),
+			    target = $("#popup"),
 
 			    backdrop = !param.backdrop ? "show" : "",
 			    txt = param.txt,
@@ -70,7 +70,7 @@ define(function(require, exports, module){
 			if (!target[0]) {
 
 
-			    target = $('<div id="UC_popup" class="UC-popupWrap"  style="z-index:99999999;">');
+			    target = $('<div id="popup" class="popupWrap"  style="z-index:99999999;">');
 
 			    $("body").append(target);
 
@@ -122,16 +122,30 @@ define(function(require, exports, module){
 			}
 		},
 		_popupClose: function() {
-		    var target = $("#UC_popup");
+		    var target = $("#popup");
 
 		    if(target.length) target.removeClass("show");
 
 		},
+		/**
+         * [alert 弹出框]
+         * @param  {[string]} txt  [展示文案]
+         * @param  {[function or object or null]} param  
+         * param = {
+         *      function [点击按钮的回调函数] 
+         *      object --->{
+         *             yesbtnTxt : "string" [按钮文字] 
+         *             title : "string" [标题] 
+         *             backdrop : boolean [是否不需要背景层， true就是不需要] 
+         *             yescallback : function [点击按钮的回调函数] 
+         *      }
+         *}
+         */
 		alert: function(txt, param) {
 		    var objParam = {};
 
 		    //如果文字为空
-		    // if (!txt) return;
+		    if (!txt) return;
 
 		    objParam["txt"] = txt;
 
@@ -153,6 +167,22 @@ define(function(require, exports, module){
 		    this._popup("alert", objParam);
 
 		},
+		/**
+         * [prompt 弹出框]
+         * @param  {[string]} txt  [展示文案]
+         * @param  {[function or object or null]} param  
+         * param = {
+         *      function [点击确认按钮的回调函数] 
+         *      object --->{
+         *             yesbtnTxt : "string" [确认按钮文字] 
+         *             nobtnTxt : "string" [取消按钮文字] 
+         *             title : "string" [标题] 
+         *             backdrop : boolean [是否不需要背景层， true就是不需要] 
+         *             yescallback : function [点击确认按钮的回调函数] 
+         *             nocallback : function [点击取消按钮的回调函数] 
+         *      }
+         *}
+         */
 		prompt: function(txt, param) {
 
 		    var objParam = {};
@@ -180,6 +210,23 @@ define(function(require, exports, module){
 		    this._popup("prompt", objParam);
 
 		},
+		 /**
+         * [password 弹出框]
+         
+         * @param  {[function or object ]} param  
+         * param = {
+         *      function [点击确认按钮的回调函数] 
+         *      object --->{
+         *             yesbtnTxt : "string" [确认按钮文字] 
+         *             nobtnTxt : "string" [取消按钮文字] 
+         *             title : "string" [标题] 
+         *             addhtml : "string" [附加内容， 例如：<p>附加内容</p>] 
+         *             backdrop : boolean [是否不需要背景层， true就是不需要] 
+         *             yescallback : function [点击确认按钮的回调函数, 会将输入的密码返回] 
+         *             nocallback : function [点击取消按钮的回调函数] 
+         *      }
+         *}
+         */
 		password: function(param) {
 
 		    var objParam = {};
@@ -202,6 +249,57 @@ define(function(require, exports, module){
 		        }
 		    }
 		    this._popup("password", objParam);
-		}
+		},
+		/**
+		 * [tips 提示框]
+		 * @param  {[string]} txt  [展示文案]
+		 * @param  {[ object ]} param  
+		 * param = {
+		 *      object --->{
+		 *             time : number [消失时间, 默认2000毫秒] 
+		 *             
+		 *      }
+		 *}
+		 */
+		tips: function(txt, param) {
+			var _this = this;
+
+		    if (!txt) return;
+
+		    var html = "<p>" + txt + "</p>";
+		    var target = $("#tips");
+
+		    // 初始化alert弹框
+		    if (!target[0]) {
+
+
+		        target = $('<div id="tips" class="tips">');
+
+		        $("body").append(target);
+
+		    }
+		    setTimeout(function() {
+		        target.html(html).addClass("show");
+
+		        clearTimeout(_this.tipsTimout);
+		        clearTimeout(_this.animateTimout);
+
+		        _this.tipsTimout = setTimeout(function() {
+		            target.removeClass("show");
+
+		            _this.animateTimout = setTimeout(function() {
+		                target.remove();
+		            }, 500);
+		        }, param ? param.time || 2000 : 2000);
+		    }, 0);
+
+
+		},
+
+		tipsClose: function() {
+		    var target = $("#tips");
+
+		    if(target.length) target.remove();
+		},
 	})
 })

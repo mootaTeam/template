@@ -12,7 +12,10 @@ define( function(require, exports, module){
 	var ExampleView = Backbone.View.extend({
 		el : "body",
 		events : {
-			
+			"click #alert" : "handleClick_alert",
+			"click #prompt" : "handleClick_prompt",
+			"click #password" : "handleClick_password",
+			"click #tips1" : "handleClick_tips"
 		},
 
 		initialize : function(){
@@ -69,6 +72,26 @@ define( function(require, exports, module){
 			}];
 
 			this.$("#color").append(_.template(color_section)({data : colorArr}))
+
+
+
+			
+		},
+		handleClick_alert : function(){
+
+			$.alert("弹弹弹")
+		},
+		handleClick_prompt : function(){
+
+			$.prompt("弹弹弹")
+		},
+		handleClick_password : function(){
+
+			$.password()
+		},
+		handleClick_tips : function(){
+
+			$.tips("弹弹弹")
 		},
 
 		render  : function(){
